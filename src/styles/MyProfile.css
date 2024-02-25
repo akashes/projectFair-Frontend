@@ -1,0 +1,10 @@
+input{
+    outline: none;
+    border: 1px solid transparent;
+    transition: all 1s  ;
+    box-shadow: none;
+}
+
+input:hover{
+    border: 1px solid green;
+}
