@@ -5,6 +5,7 @@ import { getUserProject } from '../services/allAPI'
 import { Row ,Col} from 'react-bootstrap'
 import ProjectCard from './ProjectCard'
 import { addProjectResponseContext } from '../ContextAPI/ContextShare'
+import ProfileProjectCard from './ProfileProjectCard'
 
 function MyProjects() {
  const{addProjectRes,setAddProjectRes}= useContext(addProjectResponseContext)
@@ -64,7 +65,7 @@ function MyProjects() {
               
              {/* <h5>{project.title}</h5> */}
              <div style={{maxHeight:'200px',maxWidth:'250px'}}>
-              <ProjectCard projectCard={project} profile />         
+              <ProfileProjectCard projectCard={project} profile />         
                
              </div>
      

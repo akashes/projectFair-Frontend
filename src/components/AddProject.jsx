@@ -35,6 +35,7 @@ function AddProject() {
   const projectAdd=async()=>{
     const{title,language,github,link,overview,projectImage}=projectDetails
     if(!title || !language || !github || !link || !overview || !projectImage){
+      console.log(title,language,github,link,overview,projectImage);
     toast.warning('please enter all details')
     }else{
 

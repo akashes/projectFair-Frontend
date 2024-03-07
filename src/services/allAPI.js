@@ -30,3 +30,9 @@ export const getUserProject=async(reqHeader)=>{
 export const getAllProject=async(reqHeader)=>{
     return await commonAPI('get',`${baseUrl}/project/all-projects`,"",reqHeader)
 }
+
+export const editUserProject=async(projectId,reqBody,reqHeader)=>{
+
+    return await commonAPI('put',`${baseUrl}/project/update-project/${projectId}`,reqBody,reqHeader)
+
+}
