@@ -5,6 +5,11 @@ import { Row,Col,Container } from 'react-bootstrap'
 import {loginAPI, registerAPI} from '../services/allAPI'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
+import {
+  MDBContainer,
+  MDBNavbar,
+  MDBNavbarBrand
+} from 'mdb-react-ui-kit';
 
 
 function Auth({register}) {
@@ -88,7 +93,20 @@ function Auth({register}) {
   }
   return (
 <>
+<MDBNavbar
+          //  className='position-fixed top-0 w-100'
+            light bgColor='light'>
+        <MDBContainer fluid>
+          <MDBNavbarBrand onClick={()=>navigate('/')} >
+          <i class="fa-solid fa-file-import fa-fade mx-3 fs-1 text-info"></i>
+          Project Hub
+        </MDBNavbarBrand>
+
+      
+        </MDBContainer>
+      </MDBNavbar>
 <div 
+
     className='d-flex justify-content-center align-items-center'
      style={{width:'100%',minHeight:'100vh'}}>
       <Container>

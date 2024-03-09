@@ -16,7 +16,7 @@ import EditProject from './EditProject';
 
 
 function ProjectCard({projectCard}) {
-  console.log(projectCard);
+  // console.log(projectCard);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

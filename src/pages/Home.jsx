@@ -6,6 +6,11 @@ import ProjectCard from "../components/ProjectCard";
 import { useNavigate } from "react-router-dom";
 import { getHomeProject } from "../services/allAPI";
 import './home.css'
+import {
+  MDBContainer,
+  MDBNavbar,
+  MDBNavbarBrand
+} from 'mdb-react-ui-kit';
 
 function Home() {
   const[homeProject,setHomeProject]=useState([])
@@ -35,6 +40,18 @@ function Home() {
   },[])
   return (
     <div style={{ minHeight: "80vh" }}>
+       <MDBNavbar
+          //  className='position-fixed top-0 w-100'
+            light bgColor='light'>
+        <MDBContainer fluid>
+          <MDBNavbarBrand onClick={()=>navigate('/')} >
+          <i class="fa-solid fa-file-import fa-fade mx-3 fs-1 text-info"></i>
+          Project Hub
+        </MDBNavbarBrand>
+
+       
+        </MDBContainer>
+      </MDBNavbar>
       {/* landing Section */}
       <Container>
        
@@ -80,6 +97,7 @@ function Home() {
             behavior="scroll"
             scrollAmount="20"
             scrollDelay='0'
+          
                   >
            
             <Row>
