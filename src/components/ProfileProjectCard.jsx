@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
 import { Modal,Col,Button,Row } from 'react-bootstrap';
 import EditProject from './EditProject';
@@ -13,14 +13,46 @@ import {
   } from 'mdb-react-ui-kit';
   import image from '../assets/projectTitle1.png'
   import { baseUrl } from '../services/baseUrl';
+import { deleteUserProject } from '../services/allAPI';
+import { DeleteUserProjectResponseContext } from '../ContextAPI/ContextShare';
 
- 
 
 function ProfileProjectCard({projectCard}) {
+  console.log('projectcard is ',projectCard)
+  const{setDeleteUserProjectRes}=useContext(DeleteUserProjectResponseContext)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
+  const handleDeleteProject=async(github)=>{
+    console.log('git is ',github);
+    const reqBody={
+      github
+    }
+    try{
+      const token = sessionStorage.getItem('token')
+      if(token){
+        const reqHeader={
+          "Content-Type":"application/json",
+          "Authorization":`Bearer ${token} `
+  
+        }
+        const result = await deleteUserProject(reqBody,reqHeader)
+        console.log('result for delete data is ',result);
+        setDeleteUserProjectRes(result.data)
+
+      }else{
+        console.log('token expired');
+      }
+    }catch(err){
+      console.log(err);
+    }
+  
+
+
+  }
+ 
   
   return (
     <div>
@@ -37,11 +69,12 @@ function ProfileProjectCard({projectCard}) {
             <button className='btn '>
               <EditProject editData={projectCard} />
             </button>
-            <button className='btn '>
-                <i  className="fa-brands fa-github  "></i>
+            <button  className='btn '>
+              <a href={projectCard.github} target='_blank'>                <i  className="fa-brands fa-github text-dark  "></i>
+</a>
             </button>
             <button className='btn '>
-                <i  className="fa-solid fa-trash  "></i>
+                <i onClick={()=>handleDeleteProject(projectCard.github)}  className="fa-solid fa-trash  "></i>
             </button>
             </div>
     

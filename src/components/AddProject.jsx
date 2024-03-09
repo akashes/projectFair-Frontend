@@ -5,12 +5,13 @@ import { useState } from 'react';
 import image from '../assets/projectTitle2.png'
 import {Form} from 'react-bootstrap'
 import { addProjectAPI } from '../services/allAPI';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import { addProjectResponseContext } from '../ContextAPI/ContextShare';
+import { showSuccessAlert } from '../utils/toastify';
 
 
 function AddProject() {
-
+//for refreshing the parent componet using context
   const{addProjectRes,setAddProjectRes}=useContext(addProjectResponseContext)
 
 
@@ -36,7 +37,7 @@ function AddProject() {
     const{title,language,github,link,overview,projectImage}=projectDetails
     if(!title || !language || !github || !link || !overview || !projectImage){
       console.log(title,language,github,link,overview,projectImage);
-    toast.warning('please enter all details')
+    // toast.warning('please enter all details')
     }else{
 
       const reqBody = new FormData()
@@ -57,10 +58,14 @@ function AddProject() {
      try{
       if(result.status === 200){
         console.log(result.data);
-        toast.success("Project added successfully")
+        // showSuccessAlert('Project Added Successfully')
+        // toast.success("Project added successfully")
+        alert('Project Added Successfully')
         handleClose()
         // for context to acess data
         setAddProjectRes(result.data)
+
+        //reseting modal
         setProjectDetails({
           title:"",
           language:"",
@@ -72,10 +77,10 @@ function AddProject() {
         setPreview("")
        }else{
         console.log(result.response.data);
-        toast.warning('Project already exists')
+        // toast.warning('Project already exists')
        }
       }catch(err){
-        toast.warning('couldnt add project')
+        // toast.warning('couldnt add project')
        
       
 
@@ -177,11 +182,7 @@ size='lg'
 <Button onClick={projectAdd}  variant="primary">Add</Button>
 </Modal.Footer>
 </Modal>
-<ToastContainer
-    position='top-center'
-    theme='light'
-    autoClose={1500}
-    />
+
     </>
   )
 }

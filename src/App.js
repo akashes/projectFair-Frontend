@@ -8,6 +8,7 @@ import Project from './pages/Project';
 import Auth from './pages/Auth';
 import PageNotFound from './pages/PageNotFound';
 
+
 function App() {
   return (
     <div className="App">

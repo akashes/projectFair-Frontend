@@ -4,11 +4,15 @@ import '../styles/MyProjects.css'
 import { getUserProject } from '../services/allAPI'
 import { Row ,Col} from 'react-bootstrap'
 import ProjectCard from './ProjectCard'
-import { addProjectResponseContext } from '../ContextAPI/ContextShare'
+import { DeleteUserProjectResponseContext, EditUserProjectResponseContext, addProjectResponseContext } from '../ContextAPI/ContextShare'
 import ProfileProjectCard from './ProfileProjectCard'
 
 function MyProjects() {
  const{addProjectRes,setAddProjectRes}= useContext(addProjectResponseContext)
+ const{editUserProjectRes} = useContext(EditUserProjectResponseContext)
+ const{deleteUserProjectRes}=useContext(DeleteUserProjectResponseContext)
+ 
+
  console.log(addProjectRes);
   const[userProjects,setUserProjects]=useState([])
 
@@ -46,7 +50,7 @@ function MyProjects() {
     handleUserProjects()
   
   
-   },[addProjectRes])
+   },[addProjectRes,editUserProjectRes,deleteUserProjectRes])
   return (
     <div >
       <div className='d-felx  '>

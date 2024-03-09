@@ -1,12 +1,14 @@
-import React,{useEffect, useState} from 'react'
+import React,{useContext, useEffect, useState} from 'react'
 import { Modal,Button,Form } from 'react-bootstrap';
 import image from '../assets/projectTitle2.png'
 import { ToastContainer, toast } from 'react-toastify';
 
 import { baseUrl } from '../services/baseUrl';
 import { editUserProject } from '../services/allAPI';
+import { EditUserProjectResponseContext } from '../ContextAPI/ContextShare';
 
 function EditProject({editData}) {
+  const {setEditUserProjectRes} = useContext(EditUserProjectResponseContext)
     
   const[projectDetails,setProjectDetails]=useState({
     id:editData._id,
@@ -43,7 +45,7 @@ function EditProject({editData}) {
       const token = sessionStorage.getItem('token')
       console.log(token);
 
-      if(token){
+      if(preview){
         const reqHeader={
           "Content-Type":"multipart/form-data",
           "Authorization":`Bearer ${token}`
@@ -55,13 +57,35 @@ function EditProject({editData}) {
         if(result.status===200){
           setProjectDetails(result.data)
           handleClose()
+          setEditUserProjectRes(result.data)
         }else{
           toast.warning(result.response.data)
         }
        }catch(err){
         console.log(err);
        }
-      }    
+      }else{
+        const reqHeader={
+          "Content-Type":"multipart/json",
+          "Authorization":`Bearer ${token}`
+        }
+        //api call
+        const result = await editUserProject(id,reqBody,reqHeader)
+        console.log(result);  
+       try{
+        if(result.status===200){
+          setProjectDetails(result.data)
+          handleClose()
+          setEditUserProjectRes(result.data)
+
+        }else{
+          toast.warning(result.response.data)
+        }
+       }catch(err){
+        console.log(err);
+       }
+
+      }
     }
 
   }
