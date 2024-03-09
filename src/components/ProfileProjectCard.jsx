@@ -15,6 +15,8 @@ import {
   import { baseUrl } from '../services/baseUrl';
 import { deleteUserProject } from '../services/allAPI';
 import { DeleteUserProjectResponseContext } from '../ContextAPI/ContextShare';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function ProfileProjectCard({projectCard}) {
@@ -40,6 +42,7 @@ function ProfileProjectCard({projectCard}) {
         }
         const result = await deleteUserProject(reqBody,reqHeader)
         console.log('result for delete data is ',result);
+        toast.success('Project deleted successfully')
         setDeleteUserProjectRes(result.data)
 
       }else{
@@ -110,6 +113,25 @@ function ProfileProjectCard({projectCard}) {
       </Button>
     </Modal.Footer>
   </Modal></>
+  <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
+<ToastContainer
+
+position='top-center'
+autoClose={5000}
+
+/>
+
       
     </div>
   )

@@ -14,6 +14,7 @@ import {
   import { baseUrl } from '../services/baseUrl';
 import EditProject from './EditProject';
 
+
 function ProjectCard({projectCard}) {
   console.log(projectCard);
     const [show, setShow] = useState(false);
@@ -64,7 +65,9 @@ function ProjectCard({projectCard}) {
       Close
     </Button>
   </Modal.Footer>
-</Modal></> 
+</Modal>
+</> 
+
  }
    
  </>

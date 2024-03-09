@@ -8,7 +8,6 @@ import './bootstrap.min.css'
 import { BrowserRouter } from 'react-router-dom';
 // import 'react-toastify/dist/ReactToastify.css';
 import ContextShare from './ContextAPI/ContextShare';
-import { ToastContainer } from 'react-toastify';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,7 +16,6 @@ root.render(
     <ContextShare>
     <BrowserRouter>
     <App />
-    <ToastContainer/>
 
 
     </BrowserRouter>
